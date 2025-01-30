@@ -3,21 +3,14 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
-from kivy.uix.slider import Slider
-from kivy.uix.colorpicker import ColorPicker
-from kivy.uix.textinput import TextInput
-from kivy.clock import Clock
-from kivy.uix.screenmanager import ScreenManager, Screen
-import time
-import tinytuya
-import logging
+from kivy.uix.screenmanager import Screen
 
 
 class HomeScreen(Screen):
     def __init__(self, **kwargs):
         super(HomeScreen, self).__init__(**kwargs)
 
-        self.diffuser = App.get_running_app().get_d()
+        self.diffuser = App.get_running_app().get_diffuser()
 
         self.window = GridLayout()
         self.window.cols = 1

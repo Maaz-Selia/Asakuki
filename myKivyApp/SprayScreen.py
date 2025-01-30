@@ -1,5 +1,5 @@
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
@@ -9,7 +9,7 @@ class SprayScreen(Screen):
     def __init__(self, **kwargs):
         super(SprayScreen, self).__init__(**kwargs)
 
-        self.diffuser = App.get_running_app().get_d()
+        self.diffuser = App.get_running_app().get_diffuser()
 
         self.window = GridLayout()
         self.window.cols = 1
