@@ -4,10 +4,10 @@ from kivy.uix.gridlayout import GridLayout
 from HomeScreen import HomeScreen
 from SprayScreen import SprayScreen
 from LightScreen import LightScreen
+from TrackScreen import TrackScreen
 import tinytuya
 
 class Diffuser(App):
-
     def __init__(self, **kwargs):
 
         super().__init__(**kwargs)
@@ -23,7 +23,10 @@ class Diffuser(App):
 
         screen_manager = ScreenManager()
 
-        for screen in [HomeScreen(name='home_screen'), SprayScreen(name='spray_screen'), LightScreen(name='light_screen')]:
+        for screen in [HomeScreen(name='home_screen'),
+               SprayScreen(name='spray_screen'),
+               LightScreen(name='light_screen'),
+               TrackScreen(name='track_screen')]:
             screen.window.cols = 1
             screen.window.size_hint = (0.6, 0.7)
             screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
