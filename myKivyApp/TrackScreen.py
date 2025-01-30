@@ -1,3 +1,4 @@
+import logging
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
@@ -15,7 +16,7 @@ class TrackScreen(Screen):
 
         self.window = GridLayout()
 
-        self.maxDuration = 16
+        self.maxDuration = 16 * 60
         self.maxDrops = 24
 
         # User input of ml
@@ -46,13 +47,12 @@ class TrackScreen(Screen):
         self.manager.current = 'home_screen'
 
     def _calculate(self, instance):
-        num = int(self.quantity.text) if self.quantity.text else 0
-        if num < 0:
-            self.quantity.text = "0"
-            num = 0
-        elif num > 500:
-            self.quantity.text = "500"
-            num = 500
-        
-        remDuration = num / 500 * self.maxDuration
-        self.answer.text = str(remDuration)
+        intermittenceValue = App.get_running_app().get_intermittance()
+        duration = self.maxDuration if intermittenceValue is 0 else self.maxDuration * 2
+
+        remDuration = int(self.quantity.text) / 500 * duration
+        reqDrops = int(self.quantity.text) / 500 * self.maxDrops
+
+        hours, mins = divmod(remDuration, 60)
+
+        self.answer.text = f"{int(hours):02d}:{int(mins):02d}" + ' | ' + str(int(reqDrops))

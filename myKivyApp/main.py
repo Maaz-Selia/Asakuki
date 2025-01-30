@@ -21,7 +21,7 @@ class Diffuser(App):
 
     def build(self):
 
-        screen_manager = ScreenManager()
+        self.screen_manager = ScreenManager()
 
         for screen in [HomeScreen(name='home_screen'),
                SprayScreen(name='spray_screen'),
@@ -31,12 +31,19 @@ class Diffuser(App):
             screen.window.size_hint = (0.6, 0.7)
             screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
 
-            screen_manager.add_widget(screen)
+            self.screen_manager.add_widget(screen)
 
-        return screen_manager
+        return self.screen_manager
     
     def get_diffuser(self):
         return self.diffuser # Method to access the variable from MyApp
+    
+    def get_intermittance(self):
+        sprayScreen = self.screen_manager.get_screen('spray_screen')
+        if sprayScreen.intermittence:
+            return 1
+        else:
+            return 0
 
 if __name__ == "__main__":
     Diffuser().run()
