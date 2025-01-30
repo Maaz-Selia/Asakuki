@@ -13,7 +13,6 @@ class HomeScreen(Screen):
         self.diffuser = App.get_running_app().get_diffuser()
 
         self.window = GridLayout()
-        self.window.cols = 1
 
         # Power Button
         self.button = Button(text="Power")

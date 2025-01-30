@@ -12,7 +12,6 @@ class SprayScreen(Screen):
         self.diffuser = App.get_running_app().get_diffuser()
 
         self.window = GridLayout()
-        self.window.cols = 1
 
         # Spray Buttons
         self.button = Button(text="off")

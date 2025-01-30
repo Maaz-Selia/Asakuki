@@ -12,7 +12,6 @@ class LightScreen(Screen):
         self.diffuser = App.get_running_app().get_diffuser()
 
         self.window = GridLayout()
-        self.window.cols = 1
 
         # Colour Picker
         currentColour = self.diffuser.colour[0:6]

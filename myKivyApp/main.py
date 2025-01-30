@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.gridlayout import GridLayout
 from HomeScreen import HomeScreen
 from SprayScreen import SprayScreen
 from LightScreen import LightScreen
@@ -22,14 +23,12 @@ class Diffuser(App):
 
         screen_manager = ScreenManager()
 
-        home_screen = HomeScreen(name='home_screen')
-        spray_screen = SprayScreen(name='spray_screen')
-        light_screen = LightScreen(name='light_screen')
+        for screen in [HomeScreen(name='home_screen'), SprayScreen(name='spray_screen'), LightScreen(name='light_screen')]:
+            screen.window.cols = 1
+            screen.window.size_hint = (0.6, 0.7)
+            screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
 
-
-        screen_manager.add_widget(home_screen)
-        screen_manager.add_widget(spray_screen)
-        screen_manager.add_widget(light_screen)
+            screen_manager.add_widget(screen)
 
         return screen_manager
     
