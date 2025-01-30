@@ -1,0 +1,37 @@
+{
+    "timestamp": 1738179436.070446,
+    "devices": [
+        {
+            "id": "bf0b43e24218f44c8axniv",
+            "ip": "192.168.0.108",
+            "active": 2,
+            "encrypt": true,
+            "productKey": "7x87ndiyat1sv6os",
+            "token": true,
+            "wf_cfg": true,
+            "name": "ASAKUKI Smart Oil Diffuser",
+            "key": "t~Yb#8Y'd1fh<fFi",
+            "mac": "fc:3c:d7:89:59:84",
+            "ability": 0,
+            "dev_type": "default",
+            "err": "",
+            "type": "default",
+            "dps": {
+                "dps": {
+                    "1": true,
+                    "11": true,
+                    "12": 0,
+                    "13": "0",
+                    "14": 0,
+                    "103": "small",
+                    "108": "03fff600b1fcff",
+                    "109": "white",
+                    "110": "2",
+                    "111": 255
+                }
+            },
+            "origin": "broadcast",
+            "ver": "3.4"
+        }
+    ]
+}

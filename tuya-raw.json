@@ -1,0 +1,38 @@
+{
+    "result": [
+        {
+            "active_time": 1738160669,
+            "biz_type": 0,
+            "category": "jsq",
+            "create_time": 1737550389,
+            "icon": "smart/icon/bay1617973285239HqWN/7078f1aba51ae0884cb477a48ec6302f.png",
+            "id": "bf0b43e24218f44c8axniv",
+            "ip": "86.10.141.234",
+            "lat": "0",
+            "local_key": "t~Yb#8Y'd1fh<fFi",
+            "lon": "0",
+            "model": "100-DFGeneric",
+            "name": "ASAKUKI Smart Oil Diffuser",
+            "online": true,
+            "owner_id": "222076741",
+            "product_id": "7x87ndiyat1sv6os",
+            "product_name": "",
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu1737319169078JCPw4",
+            "update_time": 1738160670,
+            "uuid": "71b58271d8aca6ed",
+            "mapping": {}
+        }
+    ],
+    "success": true,
+    "t": 1738160758099,
+    "tid": "f4f20d6fde4c11efa76ab217c6c149bc",
+    "file": {
+        "name": "tuya-raw.json",
+        "description": "Full raw list of Tuya devices.",
+        "account": "5hj8vctnyxtmk85sv7dk",
+        "date": "2025-01-29T14:25:55.882066",
+        "tinytuya": "1.16.1"
+    }
+}
