@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
-from ..myKivyApp import HomeScreen, LightScreen, SprayScreen
+from HomeScreen import HomeScreen
+from SprayScreen import SprayScreen
+from LightScreen import LightScreen
 import tinytuya
 
 class Diffuser(App):
@@ -10,7 +12,7 @@ class Diffuser(App):
         super().__init__(**kwargs)
 
         #Initialise Diffuser Object
-        self.d = tinytuya.DiffuserDevice(
+        self.diffuser = tinytuya.DiffuserDevice(
             dev_id='bf0b43e24218f44c8axniv',
             address='Auto',      # Or set to 'Auto' to auto-discover IP address
             local_key='t~Yb#8Y\'d1fh<fFi', 
@@ -31,8 +33,8 @@ class Diffuser(App):
 
         return screen_manager
     
-    def get_variable(self):
-        return self.d # Method to access the variable from MyApp
+    def get_diffuser(self):
+        return self.diffuser # Method to access the variable from MyApp
 
 if __name__ == "__main__":
     Diffuser().run()

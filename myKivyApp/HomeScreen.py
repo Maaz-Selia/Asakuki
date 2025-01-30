@@ -16,6 +16,9 @@ import logging
 class HomeScreen(Screen):
     def __init__(self, **kwargs):
         super(HomeScreen, self).__init__(**kwargs)
+
+        self.diffuser = App.get_running_app().get_d()
+
         self.window = GridLayout()
         self.window.cols = 1
 
@@ -29,10 +32,17 @@ class HomeScreen(Screen):
         button.bind(on_press=self.go_to_spray_screen)
         self.window.add_widget(button)
 
+        button = Button(text="Go to Light Screen")
+        button.bind(on_press=self.go_to_light_screen)
+        self.window.add_widget(button)
+
         self.add_widget(self.window)
 
     def go_to_spray_screen(self, instance):
         self.manager.current = 'spray_screen'
 
+    def go_to_light_screen(self, instance):
+        self.manager.current = 'light_screen'
+
     def _toggle_power(self, instance):
-        return self.d.toggle_power()
+        return self.diffuser.toggle_power()

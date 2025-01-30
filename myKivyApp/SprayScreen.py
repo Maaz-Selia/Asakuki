@@ -1,3 +1,4 @@
+from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -7,6 +8,9 @@ from kivy.clock import Clock
 class SprayScreen(Screen):
     def __init__(self, **kwargs):
         super(SprayScreen, self).__init__(**kwargs)
+
+        self.diffuser = App.get_running_app().get_d()
+
         self.window = GridLayout()
         self.window.cols = 1
 
@@ -46,23 +50,23 @@ class SprayScreen(Screen):
         if self.intermittence:
             Clock.unschedule(self._intermittence_task)
             self.intermittence = False
-        return self.d.set_spray(str(instance.text))
+        return self.diffuser.set_spray(str(instance.text))
     
     def _toggle_intermittence(self, instance):
         if not self.intermittence:
             self.intermittence = True
             interval = int(float(self.interval.text) * 60)
             #logging.debug(interval)
-            self.d.set_spray("small")
+            self.diffuser.set_spray("small")
             Clock.schedule_interval(self._intermittence_task , interval)
         else:
             Clock.unschedule(self._intermittence_task)
             self.intermittence = False
             
-    def _intermittence_task(self):
-        if self.d.spray is "off":
-            self.d.set_spray("small")
+    def _intermittence_task(self, instance):
+        if self.diffuser.spray is "off":
+            self.diffuser.set_spray("small")
             #logging.debug("Spray turned on")
         else:
-            self.d.set_spray("off")
+            self.diffuser.set_spray("off")
             #logging.debug("Spray turned off")

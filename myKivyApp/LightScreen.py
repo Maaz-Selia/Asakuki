@@ -1,3 +1,4 @@
+from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -7,18 +8,21 @@ from kivy.uix.colorpicker import ColorPicker
 class LightScreen(Screen):
     def __init__(self, **kwargs):
         super(LightScreen, self).__init__(**kwargs)
+
+        self.diffuser = App.get_running_app().get_d()
+
         self.window = GridLayout()
         self.window.cols = 1
 
         # Colour Picker
-        currentColour = self.d.colour[0:6]
+        currentColour = self.diffuser.colour[0:6]
         self.colourpicker = ColorPicker(hex_color=currentColour)
         self.colourpicker.hex_color = currentColour
         self.colourpicker.bind(color=self._set_colour)
         self.window.add_widget(self.colourpicker)
 
         #Brightness Slider
-        currentBrightness = self.d.brightness
+        currentBrightness = self.diffuser.brightness
         self.slider = Slider(min=-0, max=255, step=5, value=currentBrightness, value_track=True)
         self.slider.bind(value=self._set_brightness)
         self.window.add_widget(self.slider)
@@ -34,10 +38,10 @@ class LightScreen(Screen):
         self.manager.current = 'home_screen'  # Switch to home screen
 
     def _set_colour_mode(self, instance):
-        return self.d.set_colour_mode(str(instance.text))
+        return self.diffuser.set_colour_mode(str(instance.text))
     
     def _set_colour(self, instance, value):
-        return self.d.set_colour(str(instance.hex_color), self.slider.value)
+        return self.diffuser.set_colour(str(instance.hex_color), self.slider.value)
 
     def _set_brightness(self, instance, touch):
-        return self.d.set_brightness(int(instance.value))
+        return self.diffuser.set_brightness(int(instance.value))
