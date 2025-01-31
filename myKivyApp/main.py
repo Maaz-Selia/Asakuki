@@ -16,7 +16,7 @@ class Diffuser(App):
         self.diffuser = tinytuya.DiffuserDevice(
             dev_id='bf0b43e24218f44c8axniv',
             address='Auto',      # Or set to 'Auto' to auto-discover IP address
-            local_key='t~Yb#8Y\'d1fh<fFi', 
+            local_key='t~Yb#8Y\'d1fh<fFi',
             version=3.4)
 
     def build(self):

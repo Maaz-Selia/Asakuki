@@ -47,12 +47,16 @@ class TrackScreen(Screen):
         self.manager.current = 'home_screen'
 
     def _calculate(self, instance):
-        intermittenceValue = App.get_running_app().get_intermittance()
-        duration = self.maxDuration if intermittenceValue is 0 else self.maxDuration * 2
 
-        remDuration = int(self.quantity.text) / 500 * duration
-        reqDrops = int(self.quantity.text) / 500 * self.maxDrops
+        if self.quantity.text != "":
+            intermittenceValue = App.get_running_app().get_intermittance()
+            duration = self.maxDuration if intermittenceValue is 0 else self.maxDuration * 2
 
-        hours, mins = divmod(remDuration, 60)
+            remDuration = int(self.quantity.text) / 500 * duration
+            reqDrops = int(self.quantity.text) / 500 * self.maxDrops
 
-        self.answer.text = f"{int(hours):02d}:{int(mins):02d}" + ' | ' + str(int(reqDrops))
+            hours, mins = divmod(remDuration, 60)
+
+            self.answer.text = f"{int(hours):02d}:{int(mins):02d}" + ' | ' + str(int(reqDrops))
+        else:
+            self.answer.text = "Enter a value"

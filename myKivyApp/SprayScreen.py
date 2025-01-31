@@ -52,15 +52,18 @@ class SprayScreen(Screen):
         return self.diffuser.set_spray(str(instance.text))
     
     def _toggle_intermittence(self, instance):
-        if not self.intermittence:
-            self.intermittence = True
-            interval = int(float(self.interval.text) * 60)
-            #logging.debug(interval)
-            self.diffuser.set_spray("small")
-            Clock.schedule_interval(self._intermittence_task , interval)
-        else:
-            Clock.unschedule(self._intermittence_task)
-            self.intermittence = False
+        try:
+            if not self.intermittence:
+                self.intermittence = True
+                interval = int(abs(float(self.interval.text)) * 60)
+                #logging.debug(interval)
+                self.diffuser.set_spray("small")
+                Clock.schedule_interval(self._intermittence_task , interval)
+            else:
+                Clock.unschedule(self._intermittence_task)
+                self.intermittence = False
+        except ValueError:
+            return
             
     def _intermittence_task(self, instance):
         if self.diffuser.spray is "off":
