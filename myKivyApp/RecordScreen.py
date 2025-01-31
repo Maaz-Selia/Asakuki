@@ -1,4 +1,3 @@
-import logging
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
@@ -19,14 +18,15 @@ class RecordScreen(Screen):
 
         # keep track of values
 
-        self.ml_input = TextInput(hint_text="Enter ml", input_filter="int", multiline=False)
-        self.add_widget(self.ml_input)
-        
-        self.drops_input = TextInput(hint_text="Enter drops", input_filter="int", multiline=False)
-        self.add_widget(self.drops_input)
+        self.ml = TextInput(multiline=False, input_filter='int', hint_text="Enter ml")
+        self.window.add_widget(self.ml)
+        self.drops = TextInput(multiline=False, input_filter='int', hint_text="Enter drops")
+        self.window.add_widget(self.drops)
 
-        self.button = Button(text="Add Record", on_press=self.add_record)
-        self.add_widget(self.button)
+        button = Button(text="Add record")
+        button.bind(on_press=self.add_record)
+        self.window.add_widget(button)
+
 
         button = Button(text="Go to Home Screen")
         button.bind(on_press=self.go_to_home_screen)
@@ -39,10 +39,9 @@ class RecordScreen(Screen):
 
     def add_record(self, instance):
         """Add a new record from user input."""
-        ml = self.ml_input.text
-        drops = self.drops_input.text
+        ml = self.ml.text
+        drops = self.drops.text
         if ml.isdigit() and drops.isdigit():
             self.db.add_record(int(ml), int(drops))
-            self.rv.update_records(self.db.load_records())
-            self.ml_input.text = ""
-            self.drops_input.text = ""
+            self.ml.text = ""
+            self.drops.text = ""

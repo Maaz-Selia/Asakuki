@@ -28,10 +28,10 @@ class Diffuser(App):
         self.screen_manager = ScreenManager()
 
         for screen in [HomeScreen(name='home_screen'),
-               SprayScreen(name='spray_screen'),
-               LightScreen(name='light_screen'),
-               TrackScreen(name='track_screen'),
-               RecordScreen(name='record_screen')]:
+                SprayScreen(name='spray_screen'),
+                LightScreen(name='light_screen'),
+                TrackScreen(name='track_screen'),
+                RecordScreen(name='record_screen')]:
             screen.window.cols = 1
             screen.window.size_hint = (0.6, 0.7)
             screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
