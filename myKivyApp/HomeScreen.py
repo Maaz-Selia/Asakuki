@@ -32,6 +32,10 @@ class HomeScreen(Screen):
         button.bind(on_press=self.go_to_track_screen)
         self.window.add_widget(button)
 
+        button = Button(text="Go to Record Screen")
+        button.bind(on_press=self.go_to_record_screen)
+        self.window.add_widget(button)
+
         self.add_widget(self.window)
 
     def go_to_spray_screen(self, instance):
@@ -42,6 +46,9 @@ class HomeScreen(Screen):
 
     def go_to_track_screen(self, instance):
         self.manager.current = 'track_screen'
+
+    def go_to_record_screen(self, instance):
+        self.manager.current = 'record_screen'
 
     def _toggle_power(self, instance):
         return self.diffuser.toggle_power()

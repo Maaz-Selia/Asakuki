@@ -5,6 +5,8 @@ from HomeScreen import HomeScreen
 from SprayScreen import SprayScreen
 from LightScreen import LightScreen
 from TrackScreen import TrackScreen
+from RecordScreen import RecordScreen
+from JSONDatabase import JSONDatabase
 import tinytuya
 
 class Diffuser(App):
@@ -18,6 +20,8 @@ class Diffuser(App):
             address='Auto',      # Or set to 'Auto' to auto-discover IP address
             local_key='t~Yb#8Y\'d1fh<fFi',
             version=3.4)
+        
+        self.db = JSONDatabase()
 
     def build(self):
 
@@ -26,7 +30,8 @@ class Diffuser(App):
         for screen in [HomeScreen(name='home_screen'),
                SprayScreen(name='spray_screen'),
                LightScreen(name='light_screen'),
-               TrackScreen(name='track_screen')]:
+               TrackScreen(name='track_screen'),
+               RecordScreen(name='record_screen')]:
             screen.window.cols = 1
             screen.window.size_hint = (0.6, 0.7)
             screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
@@ -36,7 +41,10 @@ class Diffuser(App):
         return self.screen_manager
     
     def get_diffuser(self):
-        return self.diffuser # Method to access the variable from MyApp
+        return self.diffuser
+    
+    def get_db(self):
+        return self.db
     
     def get_intermittance(self):
         sprayScreen = self.screen_manager.get_screen('spray_screen')

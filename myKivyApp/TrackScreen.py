@@ -20,7 +20,7 @@ class TrackScreen(Screen):
         self.maxDrops = 24
 
         # User input of ml
-        self.quantity = TextInput(multiline=False, input_filter='int', hint_text="Enter a number (0-500)", on_text=self._calculate)
+        self.quantity = TextInput(multiline=False, input_filter='int', hint_text="Enter a number (0-500)")
         self.window.add_widget(self.quantity)
 
         self.button = Button(text="Calculate")
