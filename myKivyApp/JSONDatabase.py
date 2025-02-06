@@ -12,7 +12,7 @@ class JSONDatabase:
         """Load records from JSON file."""
         try:
             with open(self.filename, "r") as file:
-                return json.load(file)
+                return json.load(file)[::-1]
         except (json.JSONDecodeError, FileNotFoundError):
             return []
 

@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.gridlayout import GridLayout
 from HomeScreen import HomeScreen
@@ -13,6 +14,8 @@ class Diffuser(App):
     def __init__(self, **kwargs):
 
         super().__init__(**kwargs)
+
+        Window.size = (360, 640)
 
         #Initialise Diffuser Object
         self.diffuser = tinytuya.DiffuserDevice(
@@ -33,8 +36,12 @@ class Diffuser(App):
                 TrackScreen(name='track_screen'),
                 RecordScreen(name='record_screen')]:
             screen.window.cols = 1
-            screen.window.size_hint = (0.6, 0.7)
-            screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
+            screen.window.spacing = 20
+            screen.window.padding = 20
+            #screen.window.orientation = 'tb-lr'
+            #screen.window.size_hint = (0.5, 0.5)
+            #screen.window.size_hint=(1, 1)
+            #screen.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
 
             self.screen_manager.add_widget(screen)
 

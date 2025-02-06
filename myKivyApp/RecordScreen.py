@@ -1,11 +1,15 @@
+from datetime import datetime
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.stacklayout import StackLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import Screen
 from kivy.app import App
+
 
 class RecordScreen(Screen):
     def __init__(self, **kwargs):
@@ -16,20 +20,22 @@ class RecordScreen(Screen):
 
         self.window = GridLayout()
 
-        # keep track of values
+        records = self.db.load_records()
 
-        self.ml = TextInput(multiline=False, input_filter='int', hint_text="Enter ml")
-        self.window.add_widget(self.ml)
-        self.drops = TextInput(multiline=False, input_filter='int', hint_text="Enter drops")
-        self.window.add_widget(self.drops)
-
-        button = Button(text="Add record")
-        button.bind(on_press=self.add_record)
-        self.window.add_widget(button)
-
-
+        self.recordsGrid = GridLayout(cols=2, spacing=20, padding=10)
+        
+        if records != []:
+            for r in records:
+                tObj = datetime.strptime(str(r['timestamp']), "%Y-%m-%d %H:%M:%S")
+                self.rec = Label(text = str(r['ml']) + "ml, " + str(r['drops']) + " drops")
+                self.time = Label(text = tObj.strftime("%B %d at %I:%M %p"))
+                self.recordsGrid.add_widget(self.rec)
+                self.recordsGrid.add_widget(self.time)
+        
+        self.window.add_widget(self.recordsGrid)
+        
         button = Button(text="Go to Home Screen")
-        button.bind(on_press=self.go_to_home_screen)
+        button.bind(on_release=self.go_to_home_screen)
         self.window.add_widget(button)
 
         self.add_widget(self.window)
