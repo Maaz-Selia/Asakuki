@@ -8,7 +8,7 @@ from LightScreen import LightScreen
 from TrackScreen import TrackScreen
 from RecordScreen import RecordScreen
 from JSONDatabase import JSONDatabase
-import tinytuya
+from DiffuserDevice import DiffuserDevice
 
 class Diffuser(App):
     def __init__(self, **kwargs):
@@ -18,7 +18,7 @@ class Diffuser(App):
         Window.size = (360, 640)
 
         #Initialise Diffuser Object
-        self.diffuser = tinytuya.DiffuserDevice(
+        self.diffuser = DiffuserDevice(
             dev_id='bf0b43e24218f44c8axniv',
             address='Auto',      # Or set to 'Auto' to auto-discover IP address
             local_key='t~Yb#8Y\'d1fh<fFi',
