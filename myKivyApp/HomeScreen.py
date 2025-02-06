@@ -20,19 +20,19 @@ class HomeScreen(Screen):
         self.window.add_widget(self.button)
 
 
-        button = Button(text="Go to Spray Screen")
+        button = Button(text="Spray Control")
         button.bind(on_press=self.go_to_spray_screen)
         self.window.add_widget(button)
 
-        button = Button(text="Go to Light Screen")
+        button = Button(text="Light Control")
         button.bind(on_press=self.go_to_light_screen)
         self.window.add_widget(button)
 
-        button = Button(text="Go to Track Screen")
+        button = Button(text="Calculate Control")
         button.bind(on_press=self.go_to_track_screen)
         self.window.add_widget(button)
 
-        button = Button(text="Go to Record Screen")
+        button = Button(text="Records")
         button.bind(on_press=self.go_to_record_screen)
         self.window.add_widget(button)
 
